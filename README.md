@@ -74,6 +74,7 @@
         
  в поле HEADERS нужно добавить key Authorization, а в поле value Bearer и наш access token  
     
+ ![alt text](resources/postman_example.png "Пример POST-запроса")​
     
        
     
