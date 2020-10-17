@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>Карточка собаки {{ dog.name }}</title>
+</head>
+<body>
+<div class="text-center">
+    <p><a href="{% url 'dogs' %}">К списку собак</a></p>
+</div>
+<div class="row justify-content-center">
+    <div class="text-center">
+        {% if dog %}
+            <ul>
+                <h2>{{ dog.name }}</h2>
+                <h6>Дата рождения: {{ dog.birthday }}</h6>
+                <p>Дата появления в приюте: {{ dog.arrived_at }}</p>
+                <p>Вес: {{ dog.weight }}</p>
+                <p>Длина: {{ dog.height }}</p>
+                <p>Особые приметы:{{ dog.special }}</p>
+            </ul>
+        {% else %}
+            <p>Запись о собаке не найдена</p>
+        {% endif %}
+    </div>
+</div>
+<div class="text-center">
+    {% if request.user.is_superuser or request.user == dog.shelter %}
+        <a href="{% url 'edit' dog.id %}">Редактировать</a>
+        <a href="{% url 'delete' dog.id %}">Удалить</a>
+    {% endif %}
+
+</div>
+</body>
+</html>
